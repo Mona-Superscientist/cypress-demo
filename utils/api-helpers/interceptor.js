@@ -25,3 +25,12 @@ export const interceptLogin = (mockingSample) => {
         mockingSample
     })
 }
+
+export const interceptCreateContact = (mockingSample) => {
+    intercept({
+        method: 'POST',
+        url: '**/contacts',
+        alias: 'create-contact',
+        mockingSample
+    })
+}

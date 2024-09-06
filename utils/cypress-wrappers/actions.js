@@ -24,7 +24,7 @@ const clickElement = (getElement) => {
  * @param {string} text - The text to type.
  */
 const typeText = (getElement, text) => {
-    getElement().type(text)
+    getElement().type(text, { force: true })
 }
 
 /**

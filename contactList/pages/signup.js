@@ -48,7 +48,7 @@ export const SignupPage = {
     },
 
     clickCancel: () =>  {
-        actions.click(SignupPage.clickCancel)
+        actions.click(SignupPage.cancelButton)
         return SignupPage
     },
 
