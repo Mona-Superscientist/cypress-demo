@@ -1,9 +1,5 @@
 'use strict'
 
-const getElementByAreaLabel = (elementType, ariaLabel) => {
-    return cy.get(`${elementType}[aria-label="${ariaLabel}"]`)
-}
-
 const getElementById = (elementType, identifier) => {
     return cy.get(`${elementType}[id="${identifier}"]`)
 }
