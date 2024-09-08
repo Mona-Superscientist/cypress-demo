@@ -1,23 +1,22 @@
 const { defineConfig } = require('cypress')
+const addContext = require('mochawesome/addContext');
 
 require('dotenv').config()
 
 module.exports = defineConfig({
     video: true,
-    reporter: 'node_modules/cypress-multi-reporters',
+    reporter: 'cypress-mochawesome-reporter',
     reporterOptions: {
-        reporterEnabled: 'mochawesome',
-        mochawesomeReporterOptions: {
-            reportDir: 'results/mocha',
-            overwrite: false,
-            html: false,
-            json: true,
-            timestamp: 'mmddyyyy_HHMMss',
-            showSkipped: true,
-            charts: true,
-            quite: true,
-            embeddedScreenshots: true,
-        },
+        reportDir: 'results/mocha',
+        overwrite: false,
+        html: false,
+        json: true,
+        timestamp: 'mmddyyyy_HHMMss',
+        showSkipped: true,
+        charts: true,
+        quite: true,
+        embeddedScreenshots: true,
+        inlineAssets: true,
     },
     failOnStatusCode: false,
     screenshotOnRunFailure: true,
@@ -30,11 +29,15 @@ module.exports = defineConfig({
     },
     e2e: {
         setupNodeEvents(on, config) {
+            // Setup mochawesome reports plugin
+            require('cypress-mochawesome-reporter/plugin')(on);
+
+            // Set cypress config values
             config.env = process.env
             return config
         },
         specPattern: 'specs/**/*.{js,jsx,ts,tsx}',
         baseUrl: process.env.BaseURL,
-        supportFile: false
+        supportFile: 'utils/support/index.js'
     }
 })
